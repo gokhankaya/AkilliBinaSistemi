@@ -1,0 +1,55 @@
+﻿<Window x:Class="GUI_Simulation.MainWindowForGraph"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation"
+        mc:Ignorable="d"
+        Title="ADLE Çizelge Simülasyonu" Height="400 " Width="600" WindowStyle="ToolWindow" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+   
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="14" Margin="3" x:Name="textBlock" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="Çizelge Adı:"/>
+
+        <TextBox Margin="3"  x:Name="textBox" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding GraphName}"/>
+        <Grid Grid.Column="0" Grid.Row="1"  Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Margin="3" Click="btnAddNewGraph_Click"  x:Name="btnAddNewGraph" Content="Ekle" />
+            <Button Grid.Column="1" Margin="3" Click="btnRemoveSelectedGraph_Click"  x:Name="btnRemoveSelectedGraph" Content="Kaldır"/>
+            <Button Grid.Column="2" Margin="3" Click="btnLoadNewGraph_Click"  x:Name="btnLoadNewGraph" Content="Yükle"/>
+            <Button Grid.Column="3" Margin="3" Click="btnSaveNewGraph_Click"  x:Name="btnSaveNewGraph" Content="Kaydet"/>
+            <Button Grid.Column="4" Margin="3" Click="btnCopy_Click"  x:Name="btnCopy" Content="Kopyala"/>
+            
+            <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Content="Çizelgeyi Göster" Margin="5,3"  Name="btnShowGraph" Click="btnShowGraph_Click" ></Button>
+            <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Content="Matris Gösterimi" Margin="5,3"  Name="btnShowMatrix" Click="btnShowMatrix_Click" ></Button>
+            <Button Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Content="Detay Gösterimi" Margin="5,3"  Name="btnDetail" Click="btnDetail_Click" ></Button>
+            <Button Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="1" Content="Graphml" Margin="5,3"  Name="btnGraphml" Click="btnGraphml_Click" ></Button>
+
+            <TextBox Grid.Column="3" Grid.Row="1" Margin="3" HorizontalAlignment="Right" Width="50" HorizontalContentAlignment="Center" TextWrapping="Wrap" Text="{Binding tekrarSayisi}" ></TextBox>
+            <Button Grid.Column="5" Grid.Row="1" Margin="3" Click="Button_Click" Content="Defa Çalıştır"/>
+            <TextBlock Margin="3" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="Çizelgenin detaylını görmek için çift tıklayınız."></TextBlock>
+        </Grid>
+        <ListBox  Margin="0" x:Name="lsbGraphs" MouseDoubleClick="lsbGraphs_MouseDoubleClick" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"/>       
+    </Grid>
+</Window>

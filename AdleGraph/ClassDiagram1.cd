@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AdleGraph.Utility">
+    <Position X="0.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAQAAAAAAAAACAAAAgAA=</HashCode>
+      <FileName>Utility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AdleGraph.Interfaces.IEdge">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBBAAAAAAgAAQACCAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IEdge.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AdleGraph.Interfaces.IGraph">
+    <Position X="4.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAgAAgABAAACAIAAAQABAAAAAgAIAAAAAAIAAo=</HashCode>
+      <FileName>Interfaces\IGraph.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AdleGraph.Interfaces.INode">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\INode.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

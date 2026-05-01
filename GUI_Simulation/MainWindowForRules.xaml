@@ -1,0 +1,541 @@
+﻿<Window x:Class="GUI_Simulation.MainWindowForRules"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation"
+        mc:Ignorable="d"
+        Title="ADLE Simülasyonu - Veri Üreticisi" Height="600" Width="800" MinHeight="400" MinWidth="600">
+    <Grid x:Name="plnContainer">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="290"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" x:Name="lblMesaj" Margin="10" TextWrapping="Wrap" TextAlignment="Center" Text="ABC"></TextBlock>
+
+        <ScrollViewer Grid.Column="2" Margin="3" Background="WhiteSmoke" x:Name="pnlSimilasyon">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Margin="3" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontSize="26">Simülasyon</Label>
+                <Label Margin="3" Grid.Column="0" Grid.Row="1" Content="Senaryo" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="0" Grid.Row="2" Content="Başlangıç Günü" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="0" Grid.Row="3" Content="Senaryo Süresi" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="0" Grid.Row="4" Content="Senaryo Periyodu" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="0" Grid.Row="5" Content="Bekleme Süresi" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+
+                <Label Margin="3" Grid.Column="1" Grid.Row="1" Content=":" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="1" Grid.Row="2" Content=":" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="1" Grid.Row="3" Content=":" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="1" Grid.Row="4" Content=":" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Margin="3" Grid.Column="1" Grid.Row="5" Content=":" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+
+                <ComboBox Margin="3" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" ></ComboBox>
+                <DatePicker Margin="3" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" VerticalContentAlignment="Center" ></DatePicker>
+                <TextBox Margin="3" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="3"></TextBox>
+                <Label Margin="3" Grid.Column="3" Grid.Row="3" Content="Gün" HorizontalAlignment="Left"></Label>
+                <TextBox Margin="3" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="4"></TextBox>
+                <Label Margin="3" Grid.Column="3" Grid.Row="4" Content="Dakika" HorizontalAlignment="Left"></Label>
+                <TextBox Margin="3" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="5"></TextBox>
+                <Label Margin="3" Grid.Column="3" Grid.Row="5" Content="Saniye" HorizontalAlignment="Left"></Label>
+                <Label Margin="3" VerticalContentAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="00:00" ></Label>
+                <Button Margin="3" Grid.Column="2" Grid.ColumnSpan="2"  Grid.Row="6" Content="Simülasyona Başla" Click="Button_Click"></Button>
+            </Grid>
+        </ScrollViewer>
+
+        <ScrollViewer x:Name="Buttons_ScrollViewer" Background="WhiteSmoke">
+            <StackPanel x:Name="pnlButtons">
+                <Grid Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Alanlar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button x:Name="BtnAlanlarCrud" Tag="AlanCrudGoster" Click="BtnGoster_Click" Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+                    <Button x:Name="BtnAlanlarGster" Tag="AlanListesiGoster" Click="BtnGoster_Click" Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="Auto" />
+                </Grid>
+
+                <Grid Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Cihazlar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button Click="BtnGoster_Click" Tag="CihazCrudGoster"  Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+                    <Button Click="BtnGoster_Click" Tag="CihazListesiGoster"  Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="Auto" />
+                </Grid>
+
+                <Grid Visibility="Collapsed" Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="İşlemler" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button Click="BtnGoster_Click" Tag="IslemCrudGoster" Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+                    <Button Click="BtnGoster_Click" Tag="IslemListesiGoster" Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="Auto" />
+                </Grid>
+
+                <Grid Visibility="Collapsed" Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="86"></ColumnDefinition>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Alışkanlıklar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button Click="BtnGoster_Click" Tag="AliskanlikCrudGoster" Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+                    <Button Click="BtnGoster_Click" Tag="AliskanlikListesiGoster" Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="Auto" />
+                </Grid>
+
+                <Grid Visibility="Collapsed" Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="86"></ColumnDefinition>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Kişiler" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button Click="BtnGoster_Click" Tag="KisiCrudGoster" Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+                    <Button Click="BtnGoster_Click" Tag="KisiListesiGoster" Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="Auto" />
+                </Grid>
+
+                <Grid Visibility="Collapsed" Grid.Column="0" Height="60" VerticalAlignment="Top" Margin="6"  >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="86"></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="Senaryolar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></Label>
+                    <Button Click="BtnGoster_Click" Tag="SenaryoCrudGoster" Content="Yeni Ekle" Grid.Row="1" Grid.Column="0"   Width="80"  Height="AUTO" />
+                    <Button Click="BtnGoster_Click" Tag="SenaryoListesiGoster" Content="Göster"  Grid.Row="1" Grid.Column="1"  Width="80"  Height="AUTO" />
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlAliskanlikListesiGoster" Visibility="{Binding AliskanlikListesiGoster}" >
+            <Label>AliskanlikListesiGoster</Label>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlAliskanlikCrudGoster" Visibility="{Binding AliskanlikCrudGoster}" >
+            <Label>AliskanlikCrudGoster</Label>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlKisiListesiGoster" Visibility="{Binding KisiListesiGoster}" >
+            <Label>KisiListesiGoster</Label>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlKisiCrudGoster" Visibility="{Binding KisiCrudGoster}" >
+            <Label>KisiCrudGoster</Label>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlKisiGoster" Visibility="{Binding KisiCrudGoster}" >
+            <Label Margin="3,0" FontSize="26">Yeni Kişi Ekle</Label>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">Kişilerin tanımlandığı alandır.</TextBlock>
+            <Label Margin="8,0" FontSize="13">Kişi Adı:</Label>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding actorName}"></TextBox>
+            <Label Margin="8,0" FontSize="13">Alışkanlık Seç:</Label>
+            <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="AddButton"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                    <Button Name="RemoveButton"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                </StackPanel>
+
+                <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Alışkanlıklar</Label>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Alışkanlıklar</Label>
+
+                <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBox" />
+                <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBox1"/>
+
+
+            </Grid>
+            <Button Click="BtnKaydet_ClickActor" Tag="KisiCrudGoster" Content="Kaydet" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlSenaryoCrudGoster" Visibility="{Binding SenaryoCrudGoster}" Margin="5,0,-5,0" >
+            <Label Margin="3,0" FontSize="26">Yeni Senaryo Ekle</Label>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">Senayolar belirli bir kurala göre kişilerin eklendiği durumdur.</TextBlock>
+            <Label Margin="8,0" FontSize="13">Senaryo Adı:</Label>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding scenarioName}"></TextBox>
+            <Label Margin="8,0" FontSize="13">Aktör Seç:</Label>
+            <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="AddButtonScnerio"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                    <Button Name="RemoveButtonScenario"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                </StackPanel>
+
+                <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Kişiler</Label>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Kişiler</Label>
+
+                <ListBox Grid.Column="0" Grid.Row="1"  FontFamily="13" x:Name="listBoxScenario"/>
+                <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxScenario1"/>
+            </Grid>
+            <Button Click="BtnKaydet_ClickScenario" Tag="SenaryoCrudGoster" Content="Kaydet" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlSenaryoListesiGoster" Visibility="{Binding SenaryoListesiGoster}" >
+
+            <Label Margin="3,0" FontSize="26" Content="Yeni Senaryo Ekle"/>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15"><Run Text="Senayolar belirli bir kurala göre kişilerin eklendiği durumdur."/></TextBlock>
+            <Label Margin="8,0" FontSize="13" Content="Senaryo Adı:"/>
+
+
+            <Label Grid.Column="0" Grid.Row="0" FontFamily="13" Content="Seçilmeyen Kişiler"/>
+            <Label Grid.Column="2" Grid.Row="0" FontFamily="13" Content="Seçili Kişiler"/>
+
+            <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBoxActor2"/>
+            <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxActor22"/>
+
+
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlAliskanlikGoster" Visibility="{Binding AliskanlikCrudGoster}" >
+            <Label Margin="3,0" FontSize="26">Yeni Alışkanlık Ekle</Label>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">Kişilerin alışkanlıklarının tanımlandığı alandır.</TextBlock>
+            <Label Margin="8,0" FontSize="13">Alışkanlık Adı:</Label>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding habitName}"></TextBox>
+            <Label Margin="8,0" FontSize="13">Alışkanlık Seç:</Label>
+            <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="AddButtonActor"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                    <Button Name="RemoveButtonActor"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                </StackPanel>
+
+                <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Kişiler</Label>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Kişiler</Label>
+
+                <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBoxActor"/>
+                <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxActor1"/>
+
+
+            </Grid>
+            <Button Click="BtnKaydet_ClickHabit" Tag="AliskanlikCrudGoster" Content="Kaydet" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Column="1" x:Name="plnIslemCrudGoster" Visibility="{Binding IslemCrudGoster}">
+            <StackPanel Grid.Column="1" Background="White"   >
+                <Label Margin="3,0" FontSize="26">Yeni İşlem Ekle</Label>
+                <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">İşlemlerin tanımlandığı alandır.</TextBlock>
+                <Label Margin="8,0" FontSize="13">İşlem Adı:</Label>
+                <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding operationName, Mode=OneWay}"></TextBox>
+                <Label FontSize="13">Tarih</Label>
+                <DatePicker Name="StartTime" Margin="10,0,415,0"></DatePicker>
+                <Label FontSize="13">Başlangıç Zamanı</Label>
+                <TextBlock Text="{Binding MyTime,StringFormat=HH:mm}"  Width="144"/>
+                <Label Margin="8,0" FontSize="13">Alan Seç:</Label>
+                <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Name="AddButtonArea" Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                        <Button Name="RemoveButtonArea" Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Alanlar</Label>
+                    <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Alanlar</Label>
+
+                    <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBoxArea"/>
+                    <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxArea1"/>
+                </Grid>
+
+                <Label Margin="8,0" FontSize="13">Alışkanlık Seç:</Label>
+                <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Name="AddButtonHabit"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                        <Button Name="RemoveButtonHabit"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Alışkanlıklar</Label>
+                    <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Alışkanlıklar</Label>
+
+                    <ListBox Grid.Column="0" Grid.Row="1"  FontFamily="13" x:Name="listBoxHabit"/>
+                    <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxHabit1"/>
+                </Grid>
+
+                <Label Margin="8,0" FontSize="13">Alet Seç:</Label>
+                <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="8"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Aletler</Label>
+                    <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Aletler</Label>
+
+                    <ListBox Grid.Column="0" Grid.Row="1"  FontFamily="13"/>
+                    <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13"/>
+
+
+                </Grid>
+
+                <Button Click="BtnKaydet_ClickOperation" Tag="IslemCrudGoster" Content="Kaydet" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlAlanGoster" Visibility="{Binding AlanCrudGoster}" >
+            <Label Margin="3,0" FontSize="26">Yeni Alan Ekle</Label>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">Alanların tanımlandığı bölümdür.</TextBlock>
+            <Label Margin="8,0" FontSize="13">Alan Adı:</Label>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding areaName}"></TextBox>
+            <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="AddButtonCihaz"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                    <Button Name="RemoveButtonCihaz"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                </StackPanel>
+
+                <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen Cihazlar</Label>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili Cihazlar</Label>
+
+                <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBoxDevice"/>
+                <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxDevice1"/>
+            </Grid>
+            <Grid Height="144" Width="296" HorizontalAlignment="Left" Margin="13,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="AUTO"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Name="AddButtonIslem"  Click="BtnClick_SagaAktar" Margin="3" Width="80" Height="30">Ekle &gt;&gt;</Button>
+                    <Button Name="RemoveButtonIslem"  Click="BtnClick_SolaAktar" Margin="3" Width="80" Height="30">&lt;&lt; Çıkar</Button>
+                </StackPanel>
+
+                <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Seçilmeyen İşlemler</Label>
+                <Label Grid.Column="2" Grid.Row="0" FontFamily="13">Seçili İşlemler</Label>
+
+                <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="listBoxOperation"/>
+                <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="listBoxOperation1"/>
+            </Grid>
+            <Button Tag="AlanCrudGoster" Content="Kaydet" Grid.Row="1" Grid.Column="0"   Width="80"  Height="Auto" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlAlanCrudGoster" Visibility="{Binding AlanCrudGoster}" >
+            <Label Margin="3,0" FontSize="26">Yeni Alan Ekle</Label>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">Senaryoların işlendiği alanların tanımlanması amacıyla kullanılır.</TextBlock>
+            <Label Margin="8,0" FontSize="13">Alan Adı:</Label>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding AreaName}"></TextBox>
+            <Button Click="BtnKaydet_ClickArea" Content="Kaydet"  Width="80"  Height="Auto" Margin="13"  HorizontalAlignment="Left" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlAlanListesiGoster" Visibility="{Binding AlanListesiGoster}" >
+            <Label Margin="3,0" FontSize="26">Alanları Göster</Label>
+            <ListBox Margin="10" x:Name="AreaListbox"></ListBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Background="White"  x:Name="pnlCihazCrudGoster" Visibility="{Binding CihazCrudGoster}" >
+            <Label Margin="3,0" FontSize="26" Content="Yeni Cihaz Ekle"/>
+            <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15"><Run Text="Cihazların tanımlandığı alandır."/></TextBlock>
+            <Label Margin="8,0" FontSize="13" Content="Cihaz Adı:"/>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding deviceName}"/>
+            <Label Margin="8,0" FontSize="13" Content="Cihaz IP:"/>
+            <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding ipName}"/>
+            <Label Margin="8,0" FontSize="13" Content="Tipi:"/>
+            <ComboBox x:Name="cmbDeviceTypes"  Width="144" Margin="13,0" HorizontalAlignment="Left"/>
+            <Label Margin="8,0" FontSize="13" Content="Cihazın Bulunduğu Alan :"/>
+            <ComboBox x:Name="cmbAreaOfDevice"  Width="144" Margin="13,0" HorizontalAlignment="Left"/>
+            <Button Click="BtnKaydet_ClickDevice" Content="Kaydet" HorizontalAlignment="Left" Margin="13"  Width="80"  Height="Auto" />
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlCihazListesiGoster" Visibility="{Binding CihazListesiGoster}" >
+            <Label Margin="3,0" FontSize="26" Content="Ekli Cihazları Göster"/>
+            <ListBox Margin="10" x:Name="DeviceListBox"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"  Background="White" x:Name="pnlIslemListesiGoster" Visibility="{Binding IslemListesiGoster}" >
+            <Label Margin="3,0" FontSize="26" Content="İşlem Listesi"/>
+            <ListBox Margin="10" x:Name="IslemlerListBox"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Column="1"  Background="White" x:Name="pnlIslemCrudGoster" Visibility="{Binding IslemCrudGoster}" >
+            <StackPanel >
+                <Label Margin="3,0" FontSize="26">Yeni İşlem Ekle</Label>
+                <TextBlock TextWrapping="Wrap" Margin="5,0" FontSize="15">İşlemlerin tanımlanması amacıyla kullanılır.</TextBlock>
+                <Label Margin="8,0" FontSize="13" Content="İşlem Adı:"/>
+                <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding OperationName}"/>
+                <Label Margin="8,0" FontSize="13" Content="Başlangıç Saati (örn: 22:00) :"/>
+                <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding OperationTime}"/>
+                <Label Margin="8,0" FontSize="13" Content="İşlem Başlama Uzunluğu (Dakika) :"/>
+                <TextBox Margin="13,0" FontSize="13" Width="144" HorizontalAlignment="Left" Text="{Binding OperationSpan}"/>
+                <Grid Height="122" Width="AUTO" MinWidth="250" HorizontalAlignment="Left" Margin="13,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button x:Name="btnAddAreasToOperation"  Click="btnAddAreasToOperation_Click" Margin="3" Width="50" Height="30" Content="&gt;&gt;"/>
+                        <Button x:Name="btnRemoveAreasfromOperation"  Click="btnRemoveAreasfromOperation_Click" Margin="3" Width="50" Height="30" Content="&lt;&lt;"/>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="0" FontFamily="13" Content="Diğer Alanlar"/>
+                    <Label Grid.Column="2" Grid.Row="0" FontFamily="13" Content="Seçili Alanlar"/>
+
+                    <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="lsbIsleminAlanlariHepsi"/>
+                    <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="lsbIsleminAlanlariSecilenler" />
+
+                </Grid>
+                <Grid Height="122" Width="AUTO" MinWidth="250" HorizontalAlignment="Left" Margin="13,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="AUTO"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Name="btnAddDevicesToOperation"  Click="btnAddDevicesToOperation_Click" Margin="3" Width="30" Height="30">&gt;&gt;</Button>
+                        <Button Name="btnRemoveDevicesfromOperation"  Click="btnRemoveDevicesfromOperation_Click" Margin="3" Width="30" Height="30">&lt;&lt;</Button>
+                    </StackPanel>
+
+                    <Label Grid.Column="0" Grid.Row="0" FontFamily="13">Diğer Cihazlar</Label>
+                    <Label Grid.Column="2" Grid.Row="0" FontFamily="8">Seçili Cihazlar</Label>
+                    <Label Grid.Column="4" Grid.Row="0" FontFamily="8">Aksiyonlar</Label>
+
+                    <ListBox Grid.Column="0" Grid.Row="1" FontFamily="13" x:Name="lsbIsleminCihazlariHepsi"/>
+                    <ListBox Grid.Column="2" Grid.Row="1" FontFamily="13" x:Name="lsbIsleminCihazlariSecilenler" SelectionChanged="lsbIsleminCihazlariSecilenler_SelectionChanged"/>
+                    <ListBox Grid.Column="4"  Grid.Row="1" FontFamily="13" x:Name="lsbIsleminCihazlarininAksiyonlari"/>
+
+                </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnOpereationEkle" Click="btnOpereationEkle_Click" Content="Operasyona Aksiyon Ekle" HorizontalAlignment="Left" Margin="5"  Width="Auto"  Height="Auto" />
+                    <Button x:Name="btnOperasonuDenetle" Content="Operasyonu İncele" Click="btnOperasonuDenetle_Click" Margin="5"></Button>
+                </StackPanel>
+
+                <Button x:Name="btnOpereationKaydet" Click="btnOpereationKaydet_Click" Content="Kaydet" HorizontalAlignment="Left" Margin="13,8"  Width="80"  Height="Auto" />
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Window>

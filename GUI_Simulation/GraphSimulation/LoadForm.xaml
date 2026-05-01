@@ -1,0 +1,18 @@
+﻿<Window x:Class="GUI_Simulation.GraphSimulation.LoadForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation.GraphSimulation"
+        mc:Ignorable="d"
+        Title="Kayıtlı Çizelgeler" Height="500" Width="300" WindowStyle="ToolWindow" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ListBox x:Name="lstGraphs" ItemsSource="{Binding GraphsList}" MouseDoubleClick="lstGraphs_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Path=Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

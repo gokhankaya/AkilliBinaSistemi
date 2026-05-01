@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="GUI_Simulation.AnomalyExploration.graphSelectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI_Simulation.AnomalyExploration"
+             mc:Ignorable="d" Height="135" Width="315">
+    <Border BorderThickness="1" BorderBrush="Black">
+        <Grid Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                <ColumnDefinition Width="Auto" ></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="0"  Orientation="Horizontal" Grid.ColumnSpan="5" >
+                <Label Content="{Binding Order}"></Label>
+                <Label VerticalContentAlignment="Center">(</Label>
+                <Label VerticalContentAlignment="Center" FontSize="9" Content="{Binding ID}"></Label>
+                <Label VerticalContentAlignment="Center">)</Label>
+            </StackPanel>
+            <Button Grid.Row="0" Grid.Column="5" Click="btnCloseControl_Click" Name="btnCloseControl" Margin="15,0,0,3">X</Button>
+            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" >Çizelge :</Label>
+            <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="1" Name="cmbGraphs" ></ComboBox>
+            <Button Grid.Row="1" Grid.Column="4" Margin="1" Name="btnGraphManagement" Click="btnGraphManagement_Click" >Çizelgeler</Button>
+            <Button Grid.Row="1" Grid.Column="5" Margin="1" Name="btnSelectGraph" Click="btnSelectGraph_Click" >Seç</Button>
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="1" HorizontalAlignment="Left" >Sensor Sayısı:</Label>
+            <Label Grid.Row="2" Grid.Column="2"  Content="{Binding DeviceCount}" Margin="1"></Label>
+            <CheckBox Grid.Column="3" Grid.Row="2" Content="Ana Cizelge" Grid.ColumnSpan="3" Margin="10,0" VerticalAlignment="Center" IsChecked="{Binding IsMainGraph}"></CheckBox>
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Başlangıç: " HorizontalAlignment="Right"></Label>
+                <Label Grid.Column="2" Content="Bitiş: " HorizontalAlignment="Right"></Label>
+                <ComboBox x:Name="cmbFirstNode" Grid.Column="1" VerticalContentAlignment="Center"></ComboBox>
+                <ComboBox x:Name="cmbLastNode" Grid.Column="3" VerticalContentAlignment="Center"></ComboBox>
+            </Grid>
+            <Grid Margin="0,2" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Margin="0,1,1,1" Name="btnSeonsors" Grid.Column="0" Click="btnSeonsors_Click">Sensors</Button>
+                <Button Margin="1,1" Name="btnScenarios" Grid.Column="1" Click="btnScenarios_Click">Scenario</Button>
+                <Button Margin="1" Name="btnS0" Grid.Column="2" Click="btnS0_Click">S0</Button>
+                <Button Margin="1" Name="btnS1" Grid.Column="3" Click="btnS1_Click">S1</Button>
+                <Button Margin="1,1,0,1" Name="btnRF" Grid.Column="4" Click="btnRF_Click">RF</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

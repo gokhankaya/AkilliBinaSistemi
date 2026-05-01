@@ -1,0 +1,206 @@
+﻿<Window xmlns:AdleGraphWithVGRAPH="clr-namespace:AdleGraphWithVGRAPH;assembly=AdleGraphWithVGRAPH"  xmlns:WPFWaterMarkTextBox="clr-namespace:WPFWaterMarkTextBox;assembly=WPFWaterMarkTextBox"  x:Class="GUI_Simulation.SequencePattern.MainWindowSequentialPattern"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation.SequencePattern"
+        mc:Ignorable="d"
+        Title="Adaptif, bağlam bilinçli, öğrenebilen sistem simülasyonu" Height="600" Width="900" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="345"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <Button Margin="2" Content="Kişi Ekle" x:Name="btnAddNewPersonController" Click="btnAddNewPersonController_Click" Width="45" />
+            <Button Margin="2" Content="Boşalt" x:Name="btnRemoveAll" Click="btnRemoveAll_Click" Width="45" />
+            <Button Grid.Column="1" x:Name="btnRun" Content=" Başla " Margin="2" Click="btnRun_Click" Width="45"/>
+            <Button Grid.Column="2" x:Name="btnReset" Content="Sıfırla" Width="45" Margin="2" Click="btnReset_Click"/>
+            <Button Grid.Column="3" Margin="2" Content="Çizge" Width="45" x:Name="btnGraphSettings" Click="btnGraphSettings_Click"/>
+            <Button Grid.Column="6" x:Name="btnSettings" Content="Ayarlar" Width="45" Margin="2" Click="btnSettings_Click"/>
+            <GroupBox Grid.Column="0" Header="Senaryo Sayısı" BorderThickness="0" Margin="2" Visibility="Collapsed">
+                <TextBox Text="{Binding ScenarioCount}" Margin="1"></TextBox>
+            </GroupBox>
+            <GroupBox Visibility="Collapsed" Grid.Column="4" Header="LCS Eşik Değeri" BorderThickness="0" Margin="2">
+                <TextBox Text="{Binding LCSThreshold}" Margin="1"></TextBox>
+            </GroupBox>
+            <GroupBox Grid.Column="5" Header="Eğitim Seti" BorderThickness="0" Margin="2" Visibility="Collapsed">
+                <CheckBox VerticalAlignment="Center" Margin="5,0" IsChecked="{Binding UseTrainingSet}"></CheckBox>
+            </GroupBox>
+        </StackPanel>
+
+        <ScrollViewer Grid.RowSpan="2" Grid.Column="0" Grid.Row="1" Margin="2">
+            <StackPanel Name="pnlControlContainer" Background="Gray" Orientation="Vertical"/>
+        </ScrollViewer>
+        <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding TestSequence}" FontSize="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" Margin="5,0,0,0"/>
+            <GroupBox Grid.RowSpan="2" BorderThickness="1" Grid.Row="1" Grid.Column="3" Header="Beklenen Düğüm" HorizontalContentAlignment="Center" Margin="3" >
+                <TextBlock Text="{Binding NextExpectedNode}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" />
+            </GroupBox>
+            <GroupBox Grid.Row="1" Grid.Column="2" Header="Kişi" BorderThickness="1"  Grid.RowSpan="2" Margin="3" MinWidth="70">
+                <TextBlock Text="{Binding PersonPrediction}" Grid.ColumnSpan="2"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" TextAlignment="Center" />
+            </GroupBox>
+            <GroupBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Header="Son Düğüm" Margin="3">
+                <Grid Name="pnlNodeComparer" >
+                    <Grid Margin="5" Grid.Row="1" Background="WhiteSmoke">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="B" Margin="5,0"></TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="G" Margin="5,0"></TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding PreviousExpectedNode}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding IncomingNode}"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <ListBox Grid.Column="4" Grid.Row="2" BorderThickness="0" Margin="2" Name="lsbExpectedNodes" ></ListBox>
+        </Grid>
+        <TabControl Grid.Column="2" Grid.Row="2" Name="tabControl">
+            <TabItem Header=" Açıklama ">
+                <ScrollViewer Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        1) Yeni bir kişi tanımlamak için "Yeni Kişi Ekle" butonuna basınız. Daha önce eklenen bir kişiyi kaldırmak için kişi kontrolü üzerindeki "x" butonuna basınız. Daha önce eklenen herkesi kaldırmak için "Hepsini kaldır" butonuna basınız.
+                        </TextBlock>
+                        <StackPanel>
+                            <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        2) Eklenen kişiler için eğitim verisi oluşturmak için "Senaryo Sayısı" belirledikten sonra "Başla" butonuna tıklayınız.
+                            </TextBlock>
+                            <TextBlock Margin="15,2" Foreground="Red">
+                            Not: Bir kişinin eğitim verisinin oluşması için seçenek kutusunun seçili olması gerekmektedir.
+                            </TextBlock>
+                            <TextBlock Margin="15,2" Foreground="Red">
+                            Not: Bir kişi için denemeler yapmak için seçenek kutusundaki seçimin kaldırılması gerekmektedir.
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        3) Oluşan eğitim setini veya denemelerin olasılık dağılımlarını görüntülemek için "Diziler" sekmeksine tıklayınız.
+                        </TextBlock>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        4) Denemelerin sonuçlarını incelemek için "Tahmin" sekmesine tıklayınız.
+                        </TextBlock>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        5) Yapılan işlemler ile ilgili detayları görmek için "Loglar" sekmesini açınız.
+                        </TextBlock>
+                        <StackPanel>
+                            <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        6) "Son Düğüm" alanı denemeler esnasında en son yapılan tahmin sonucunu göstermektedir.
+                            </TextBlock>
+                            <TextBlock Margin="15,2" Foreground="Red">
+                            (B) bir önceki deneme beklenen değer anlamına gelmektedir.
+                            </TextBlock>
+                            <TextBlock Margin="15,2" Foreground="Red">
+                            (G) bir önceki denemede gelen değer anlamına gelmektedir.
+                            </TextBlock>
+                        </StackPanel>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        7) "Kişi" alanı şu ana kadar yapılan denemelere göre oluşan sıralı dizinin, veri tabanında bulunan sıralı dizilere benzeme oranına göre kime benzediğinin gösterildiği alandır. Tahmin içim LCS yöntemi kullanılır.
+                        </TextBlock>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        8) "Beklenen Düğüm" alanında bir sonraki denemede şu ana kadar oluşan sıralı diziye göre en yüksek olasılıkta olan düğüm gösterilir. Yan tarafta ise diğer düğümlerin olasılıkları gösterilmektedir.
+                        </TextBlock>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        9) "LCS Eşik Değeri" adaptif sistemde yeni bir kişinin belirlenmesi amacıyla kullanılır. LCS değeri nekadar yüksek olursa yeni kişi yakalamak okadar kolay olacaktır. Eşik değeri düştükce ise mevcut tanımlı kişiler arasında karar verme olasılı artacaktır.
+                        </TextBlock>
+                        <TextBlock Margin="5,2" TextWrapping="Wrap">
+                        10) "Eğitim Seti" seçenek kutusu denemeler yapılırken daha önce oluşturulan eğitim setlerinin kullanılıp kullanılmayacağının belirlenmesinde kullanılır. Deneme esnasında "Eğitim Seti" seçeneği kaldırılırsa sadece adaptif olarak yeni eklenen sıralı diziler üzerinden analiz yapılır.
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header=" Diziler " Name="tab1">
+                <Grid Background="#FFE5E5E5" Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                        <TextBlock Text="Bütün Dizilerin Listesi ("></TextBlock>
+                        <TextBlock Text="{Binding ElementName=lsbAllSequemces, Path=Items.Count}"></TextBlock>
+                        <TextBlock Text=") "></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="Uygun Dizilerin Listesi ("></TextBlock>
+                        <TextBlock  Text="{Binding ElementName=lsbSuitableSequences, Path=Items.Count}"></TextBlock>
+                        <TextBlock Text=") "></TextBlock>
+                    </StackPanel>
+                    <ListBox Grid.Column="0" Grid.Row="1" Margin="1" Name="lsbAllSequemces"/>
+                    <ListBox Grid.Column="1" Grid.Row="1" Margin="1" Name="lsbSuitableSequences"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header=" Çizge ">
+                <Grid Background="#FFE5E5E5">
+                    <AdleGraphWithVGRAPH:graphWindow Margin="2" Name="board" />
+                </Grid>
+            </TabItem>
+            <TabItem Header=" Tahmin ">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0"  Orientation='Horizontal'>
+                        <TextBlock Text="{Binding StepSummaryOfSequentialPredictionList}"/>
+                        <TextBlock Text=" T: "/>
+                        <TextBlock Text="{Binding ElementName=lsbResults, Path=Items.Count}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal">
+                        <TextBlock Text="{Binding PersonSummaryOfSequentialPredictionList}"/>
+                        <TextBlock Text=" T: "/>
+                        <TextBlock Text="{Binding ElementName=lsbPersonResults, Path=Items.Count}"/>
+                    </StackPanel>
+                    <ListBox Grid.Row="1" Grid.Column="0" Margin="2" BorderThickness="1" Name="lsbResults"/>
+                    <ListBox Grid.Row="1" Grid.Column="1" Margin="2" BorderThickness="1" Name="lsbPersonResults"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header=" Rapor ">
+                <ScrollViewer Background="#FFE5E5E5">
+                    <StackPanel Orientation="Vertical" Name="pnlReports">
+                        <TextBlock Text="Rapor oluşturmak için veri ekleyin." Name="txtAciklama" Margin="10"></TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header=" Loglar ">
+                <ScrollViewer Background="#FFE5E5E5">
+                    <StackPanel Orientation="Vertical" Name="pnlLogs"></StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,46 @@
+﻿<Window x:Class="GUI_Simulation.EdgeAddingForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="ToolWindow">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Margin="3" Grid.Column="0" Grid.Row="0">Kaynak Düğüm</Label>
+        <Label Margin="3" Grid.Column="2" Grid.Row="0">Hedef Düğüm</Label>
+
+        <Grid Margin="3" Grid.Column="1" Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" >Ağırlık</TextBlock>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,10" Content="{Binding OK}" />
+            <TextBox IsEnabled="{Binding ShowWeights}" Grid.Row="2" Height="30" VerticalAlignment="Top" Text="{Binding Weight}" ></TextBox>
+        </Grid>
+        <ListBox x:Name="lsbKaynakNodeList" Margin="3" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3"></ListBox>
+        <ListBox x:Name="lsbHedefNodeList" Margin="3" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3"></ListBox>
+
+        <CheckBox IsChecked="{Binding IsDirected}" Margin="4" Content="Yönlü mü" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"></CheckBox>
+        <CheckBox x:Name="cbAgirlikKullanimBilgisi" IsChecked="{Binding ShowWeights}" Margin="4" Content="Ağırlık Kullan" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"></CheckBox>
+
+        <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" Margin="10" Content="{Binding ButtonContent}" Click="Button_Click"></Button>
+    </Grid>
+</Window>

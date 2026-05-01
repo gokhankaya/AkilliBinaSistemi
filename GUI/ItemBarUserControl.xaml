@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="GUI.ItemBarUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI"
+             mc:Ignorable="d" Width="120"
+             d:DesignHeight="35" d:DesignWidth="145" BorderThickness="0" Background="WhiteSmoke" BorderBrush="Black">
+    <Grid Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="lblFieldName" Text="{Binding FieldName}" Grid.ColumnSpan="2" Grid.Column="0"></TextBlock>
+        <Line Grid.Row="1" Grid.ColumnSpan="4" Stroke="Gray" StrokeThickness="3" Margin="10,0" ></Line>
+        <TextBlock Text="{Binding ActionName}" TextAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2"></TextBlock>
+        <Button Content="Çalıştır" Name="btnExecuteAction" Grid.Column="1" Grid.Row="2" Margin="1" Click="btnExecuteAction_Click"></Button>
+
+    </Grid>
+</UserControl>

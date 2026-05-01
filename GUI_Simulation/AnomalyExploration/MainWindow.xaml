@@ -1,0 +1,87 @@
+﻿<Window x:Class="GUI_Simulation.AnomalyExploration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_Simulation.AnomalyExploration"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Background="Honeydew">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="70"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="0*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="316*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="5">Kullanılacak Çizelge:</Label>
+        <ComboBox Name="cmbGraphs" Grid.Row="0" Margin="124,0,5,0" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+        <Button Name="btnManageGraphs" Click="btnManageGraphs_Click" Grid.Column="2" Grid.Row="0" Margin="0,0,3,0" Content="Çizelgeler"/>
+        <Button Name="btnSelectGraph" Click="btnSelectGraph_Click" Grid.Column="3" Grid.Row="0" Margin="0,0,3,0" Content="Seç"></Button>
+        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Margin="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="5" Grid.Column="0" Grid.Row="0">Sensör Sayısı:</TextBlock>
+                <TextBlock Margin="5" Grid.Column="1" Grid.Row="0" Text="{Binding DeviceCount}"></TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="0" Grid.Row="1">Senaryo Sayısı:</TextBlock>
+                <TextBox Text="{Binding SenaryoCount}" HorizontalAlignment="Left" Margin="5" Height="25" Width="125" Grid.Column="1" Grid.Row="1"></TextBox>
+                <Button Name="btnStart" Click="btnStart_Click" Height="35" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Width="125" Margin="5" >Başlat</Button>
+            </Grid>
+            <Grid Grid.Column="1" Background="WhiteSmoke">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0">Çerceve Uzunluğu:</TextBlock>
+                <TextBox HorizontalAlignment="Left" Margin="5" Height="25" Width="125" Grid.Column="1" Grid.Row="0" Text="{Binding InputWindowLength}"></TextBox>
+                <TextBlock Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1">Karar Ağacı Sayısı:</TextBlock>
+                <TextBox HorizontalAlignment="Left" Margin="5" Height="25" Width="125" Grid.Column="1" Grid.Row="1" Text="{Binding CountOfDecisionTreesInForest}"></TextBox>
+
+            </Grid>
+        </Grid>
+        <StackPanel Margin="5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Orientation="Horizontal">
+            <Button Height="45" Width="125" Margin="5" Content="Sensörleri Göster"></Button>
+            <Button Height="45" Width="125" Margin="5" Content="Senaryoları Göster"></Button>
+            <Button Height="45" Width="125" Margin="5" >
+                <TextBlock TextAlignment="Center">
+                    S0 ve S1 Verilerini<LineBreak/> Göster
+                </TextBlock>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4"  Margin="5" >
+            <Button Name="btnShowSensors" Margin="5,0" Click="btnShowSensors_Click"  Content="Sensörleri Göster"/>
+            <Button Name="btnShowSenaryo" Margin="5,0" Click="btnShowSenaryo_Click"  Content="Senaryoları Göster"/>
+            <Button Name="btnS0" Margin="5,0" Click="btnS0_Click"  Content="S0 Dizisi Göster"/>
+            <Button Name="btnS1" Margin="5,0" Click="btnS1_Click"  Content="S1 Dizisi Göster"/>
+            <Button Name="btnRF" Margin="5,0" Click="btnRF_Click"  Content="Random Forest Göster"/>
+            <Button Name="btnGrafic" Margin="5,0" Click="btnGrafic_Click"  Content="Grafik Göster"/>
+        </StackPanel>
+        <ListView Name="lvList" Grid.Column="0" Margin="5" Grid.Row="4" Grid.ColumnSpan="4" ></ListView>
+    </Grid>
+</Window>
