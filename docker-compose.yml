@@ -9,12 +9,37 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U adle_user -d adle_sim"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     restart: unless-stopped
 
   ml_service:
     build: ./ml_service
     ports:
       - "8000:8000"
+    restart: unless-stopped
+
+  webapi:
+    build: ./src/WebApi
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Adle: "Host=postgres;Port=5432;Database=adle_sim;Username=adle_user;Password=Password1"
+    ports:
+      - "5176:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build: ./web
+    ports:
+      - "5173:80"
+    depends_on:
+      - webapi
     restart: unless-stopped
 
 volumes:
