@@ -16,7 +16,31 @@ namespace SimulationDB_Migrations
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Actor>().ToTable("Actor");
+            modelBuilder.Entity<Actor>().ToTable("Actor", "public");
+            modelBuilder.Entity<Habit>().ToTable("Habits", "public");
+            modelBuilder.Entity<Operation>().ToTable("Operations", "public");
+            modelBuilder.Entity<OperationDevice>().ToTable("OperationDevices", "public");
+            modelBuilder.Entity<OperationHabitMapping>().ToTable("OperationHabitMappings", "public");
+            modelBuilder.Entity<AreaBase>().ToTable("AreaBases", "public");
+            modelBuilder.Entity<DeviceBase>().ToTable("DeviceBases", "public");
+            modelBuilder.Entity<GraphObject>().ToTable("GraphObjects", "public");
+            modelBuilder.Entity<GraphNodeDeviceMapping>().ToTable("GraphNodeDeviceMappings", "public");
+            modelBuilder.Entity<Scenario>().ToTable("Scenarios", "public");
+
+            modelBuilder.Entity<Habit>()
+                .HasMany(h => h.Actors)
+                .WithMany(a => a.HabitsOfActor)
+                .Map(m => m.ToTable("HabitActors", "public"));
+
+            modelBuilder.Entity<Scenario>()
+                .HasMany(s => s.ActorsInScenario)
+                .WithMany(a => a.Scenarios)
+                .Map(m => m.ToTable("ScenarioActors", "public"));
+
+            modelBuilder.Entity<Scenario>()
+                .HasMany(s => s.AreasInScenario)
+                .WithMany(a => a.Scenarios)
+                .Map(m => m.ToTable("ScenarioAreaBases", "public"));
         }
 
         public int SaveAllChanges() => base.SaveChanges();

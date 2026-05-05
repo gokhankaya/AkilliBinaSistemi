@@ -19,6 +19,14 @@ namespace DatabaseMigration
         public DbSet<Item> Items { get; set; }
         public DbSet<Memory> Memoryies { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Area>().ToTable("Areas", "public");
+            modelBuilder.Entity<AreaType>().ToTable("AreaTypes", "public");
+            modelBuilder.Entity<Item>().ToTable("Items", "public");
+            modelBuilder.Entity<Memory>().ToTable("Memories", "public");
+        }
+
         public int SaveAllChanges() => base.SaveChanges();
     }
 }

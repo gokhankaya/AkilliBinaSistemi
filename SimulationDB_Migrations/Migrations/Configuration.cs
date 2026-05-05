@@ -3,6 +3,7 @@ namespace SimulationDB_Migrations.Migrations
     using SimulationObjects;
     using System;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Migrations.History;
     using System.Linq;
 
     public sealed class Configuration : DbMigrationsConfiguration<SimulationDB_Migrations.DB>
@@ -11,6 +12,7 @@ namespace SimulationDB_Migrations.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = false;
+            SetHistoryContextFactory("Npgsql", (conn, schema) => new HistoryContext(conn, "public"));
         }
 
         protected override void Seed(SimulationDB_Migrations.DB context)

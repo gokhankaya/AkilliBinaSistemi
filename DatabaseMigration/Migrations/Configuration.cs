@@ -2,7 +2,9 @@ namespace DatabaseMigration.Migrations
 {
     using DomainObjects;
     using System;
+    using System.Data.Common;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Migrations.History;
     using System.Linq;
 
     public sealed class Configuration : DbMigrationsConfiguration<DatabaseMigration.DB>
@@ -11,6 +13,7 @@ namespace DatabaseMigration.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = false;
+            SetHistoryContextFactory("Npgsql", (conn, schema) => new HistoryContext(conn, "public"));
         }
 
         protected override void Seed(DatabaseMigration.DB context)
