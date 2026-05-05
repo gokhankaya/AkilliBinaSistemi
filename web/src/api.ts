@@ -9,8 +9,17 @@ export interface Area {
   areaTypeId: number | null;
 }
 
-export async function fetchAreas(): Promise<Area[]> {
-  const res = await fetch(`${API_BASE}/api/areas`);
-  if (!res.ok) throw new Error(`API error ${res.status}`);
+export interface AreaType {
+  id: number;
+  name: string | null;
+  definition: string | null;
+}
+
+async function getJson<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_BASE}${path}`);
+  if (!res.ok) throw new Error(`API error ${res.status} on ${path}`);
   return res.json();
 }
+
+export const fetchAreas = () => getJson<Area[]>('/api/areas');
+export const fetchAreaTypes = () => getJson<AreaType[]>('/api/area-types');
